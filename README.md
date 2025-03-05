@@ -1,4 +1,5 @@
 # ToDo Web Application
+![Layout of WEBSITE](public/images/template.png)
 I want to create a web application for creating to-do lists, not just a simple to-do list I want to add features such as:
 - calender sync
 - Kanban Board
