@@ -64,10 +64,10 @@ h1 {
 
 #sign-in {
     width: 64px;
-    height: 64px;
+    height: inherit;
     background-color: rgb(150, 186, 223);
-    border: 4px solid black;
-    border-radius: 12px;
+    border-radius: 8px;
+
     margin-left: auto;
     margin-right: 0;
 
@@ -77,6 +77,7 @@ h1 {
 #sign-in:hover {
     cursor: pointer;
     background-color: rgb(233, 174, 135);
+    outline: auto;
 }
 
 /* GRID LAYOUT */
@@ -205,6 +206,57 @@ h1 {
     border-radius: 4px;
 }
 
+/* TODO LIST */
+#todo {
+    padding: 8px;
+}
+
+.todo-header {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: rgb(190, 190, 226);
+}
+
+.todo-header input {
+    width: 100%;
+    margin-left: auto;
+    margin-right: 10px;
+    outline: none;
+    border: none;
+    padding: 0 10px;
+    font-size: 24px;
+    border-radius: 4px;
+}
+
+#add {
+    width: 25px;
+    padding: 5px;
+    border-radius: 4px;
+    background-color: rgb(132, 160, 221);
+    outline: 1px solid black;
+}
+
+#add:hover {
+    transition: all ease-in 0.15s;
+    cursor: pointer;
+    background-color: #f0c37f;
+}
+
+/* TO DO LIST */
+.list-item {
+    background-color: #b4e2f0;
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 8px;
+}
+
+.list-item #title {
+    margin-right: auto;
+}
 
 /* MEDIA QUERIES */
 @media only screen and (max-width: 1440px) {}
