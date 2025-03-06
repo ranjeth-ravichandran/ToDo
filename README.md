@@ -17,6 +17,11 @@ In the to-do list section, I want to add tasks which will hold data such as the 
 
 ## Calender
 The calender will hold all the information for each day, such as each day upon clicking on it will show all the to-do list tasks in chronological order within the page.
+- Get the Month
+- Get the Year
+- Show all the days with the associated Month(February) and Year(2025).
+  
+![Calender](public/images/calender.png)
 
 ## Timer
 A simple timer which will have an alert function with sound which will be handy when completing tasks in a timely manner.

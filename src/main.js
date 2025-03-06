@@ -1,52 +1,80 @@
 
 
-const colorPallet = document.querySelector('.color-pallets');
-const greenPallet = ['#F1F5D8', '#D6FFC1', '#B9FFAF', '#97FA9A', '#8AF0BF'];
-const bluePallet = ['#EFEFEF', '#B1E6F3', '#72DDF7', '#79B8F4', '#8093F1'];
-const tealPallet = ['#006767', '#008080', '#279E9D', '#4EBCBA', '#75DAD7'].reverse();
-const redPallet = ['#EC5353', '#EE7272', '#F09191', '#F2B0B0', '#F3CFCE'].reverse();
-const brownPallet = ['#E7C6A2', '#D3B392', '#BFA081', '#BF9675', '#966548'];
-const yellowPallet = ['#FFD000', '#F9DC5C', '#FAE588', '#FCEFB4', '#FDF8E1'].reverse();
-const orangePallet = ['#FD9A4D', '#FCB274', '#FBCA9A', '#FCDFAA', '#FCF3B9'].reverse();
+/* CALENDER */
+const time = document.getElementById('time');
+const day = document.getElementById('day');
+const month = document.getElementById('month');
+const year = document.getElementById('year');
+
+const days = document.querySelector('.days');
+
+function updateCalendar() {
+    const now = new Date();
+
+    // Time
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    time.innerText = `${hours}:${minutes}`;
+
+    // Day of the week
+    let dayOfMonth = now.getDate();
+    if (dayOfMonth % 10 == 1) {
+        dayOfMonth += 'st'
+    } else if (dayOfMonth % 10 == 2) {
+        dayOfMonth += 'nd'
+    } else if (dayOfMonth % 10 == 3) {
+        dayOfMonth += 'rd'
+    } else {
+        dayOfMonth += 'th'
+    }
+    day.innerText = dayOfMonth;
+
+    // Month
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    month.innerText = months[now.getMonth()];
+
+    // Year
+    year.innerText = now.getFullYear();
+}
+
+// Initial update
+updateCalendar();
+
+// Update every second
+setInterval(updateCalendar, 1000);
 
 
-colorPallet.innerHTML = `
-    <h2>Color Pallets</h2>
-    <h3>Green</h3>
-    <ul>
-        ${greenPallet.map(color => `<li style="background-color: ${color};" data-color="${color}">${color}</li>`).join('')}
-    </ul>
-    <h3>Blue</h3>
-    <ul>
-        ${bluePallet.map(color => `<li style="background-color: ${color};" data-color="${color}">${color}</li>`).join('')}
-    </ul>
-    <h3>Teal</h3>
-    <ul>
-        ${tealPallet.map(color => `<li style="background-color: ${color};" data-color="${color}">${color}</li>`).join('')}
-    </ul>
-    <h3>Red</h3>
-    <ul>
-        ${redPallet.map(color => `<li style="background-color: ${color};" data-color="${color}">${color}</li>`).join('')}
-    </ul>
-    <h3>Brown</h3>
-    <ul>
-        ${brownPallet.map(color => `<li style="background-color: ${color};" data-color="${color}">${color}</li>`).join('')}
-    </ul>
-    <h3>Yellow</h3>
-    <ul>
-        ${yellowPallet.map(color => `<li style="background-color: ${color};" data-color="${color}">${color}</li>`).join('')}
-    </ul>
-    <h3>Orange</h3>
-    <ul>
-        ${orangePallet.map(color => `<li style="background-color: ${color};" data-color="${color}">${color}</li>`).join('')}
-    </ul>
-`;
+function daysInCalender() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth();
+    const firstDayOfMonth = new Date(year, month, 1).getDay(); // 0 (Sunday) to 6 (Saturday)
+    const daysInMonth = new Date(year, month + 1, 0).getDate(); // Get number of days in the month
 
-document.querySelectorAll('.color-pallets li').forEach(item => {
-    item.addEventListener('click', function () {
-        const color = this.dataset.color;
-        navigator.clipboard.writeText(color).then(() => {
-            alert(`Copied: ${color}`);
-        }).catch(err => console.error('Failed to copy text: ', err));
-    });
-});
+    const days = document.querySelector('.days'); // Get the days ul
+    days.innerHTML = ''; // Clear existing days
+
+    // Adjust firstDayOfMonth to start on Monday (1) instead of Sunday (0)
+    const adjustedFirstDay = firstDayOfMonth === 0 ? 6 : firstDayOfMonth - 1;
+
+    // Add empty divs for the days before the 1st of the month
+    for (let i = 0; i < adjustedFirstDay; i++) {
+        const emptyDay = document.createElement('div');
+        emptyDay.classList.add('day-item', 'empty'); // Add empty class for styling
+        days.appendChild(emptyDay);
+    }
+
+    // Add divs for each day of the month
+    for (let i = 1; i <= daysInMonth; i++) {
+        const newDay = document.createElement('div');
+        newDay.textContent = i;
+        newDay.classList.add('day-item');
+        newDay.onclick = () => {
+            document.getElementById('todo').innerText = newDay.textContent;
+        };
+        days.appendChild(newDay);
+    }
+}
+
+// Initial days in Calender Call
+daysInCalender();

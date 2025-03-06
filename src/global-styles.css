@@ -82,7 +82,6 @@ h1 {
 /* GRID LAYOUT */
 
 .parent {
-    height: 500px;
 
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -116,6 +115,96 @@ h1 {
     letter-spacing: 2px;
     font-size: 24px;
 }
+
+/* CALENDER */
+
+#calender {
+    min-height: max-content;
+    padding: 8px;
+}
+
+.calender-header {
+    background-color: rgb(149, 199, 243);
+    border-radius: 8px;
+    overflow: hidden;
+
+    display: flex;
+}
+
+#time {
+    margin-right: auto;
+}
+
+.calender-header>* {
+    min-width: 25px;
+    padding: 4px;
+    border-radius: 4px;
+    transition: background-color ease-in-out 0.3s;
+}
+
+#day:hover,
+#month:hover,
+#year:hover {
+    cursor: pointer;
+    background-color: rgb(97, 138, 185);
+}
+
+/* CALENDER DAYS OF THE MONTH */
+
+.calender-days {
+    margin-top: 10px;
+    border-radius: 12px;
+}
+
+/* Weekdays (Mon-Sun) */
+.weekdays {
+    border-radius: 12px 12px 0 0;
+    background-color: #ddd;
+    list-style: none;
+
+    display: flex;
+    justify-content: space-around;
+}
+
+.weekdays li {
+    width: 14.28%;
+    padding: 10px 0;
+    color: #666;
+    text-align: center;
+}
+
+/* Days (1-31) */
+.days {
+    border-radius: 0 0 12px 12px;
+    padding: 10px;
+    background: #eee;
+    margin: 0;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.days .day-item {
+    width: 14.28%;
+    box-sizing: border-box;
+    color: #777;
+    text-align: center;
+    padding: 5px;
+}
+
+.days .day-item.empty {
+    background: transparent;
+    color: transparent;
+    border: none;
+}
+
+.day-item:hover {
+    transition: background-color ease-in 0.15s;
+    cursor: pointer;
+    background-color: #b9b4b4;
+    border-radius: 4px;
+}
+
 
 /* MEDIA QUERIES */
 @media only screen and (max-width: 1440px) {}
